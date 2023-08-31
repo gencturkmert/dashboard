@@ -12,16 +12,21 @@ require_once("daos/CampDao.php");
 require_once("daos/UserDao.php");
 require_once("daos/KindDao.php");
 
+require_once("auth/auth.php");
+
+
 
 // Create DAO instances
-$workerDao = new EmployeeDao($conn);
+$employeeDao = new EmployeeDao($conn);
 $animalDao = new AnimalDao($conn);
 $campDao = new CampDao($conn);
 $userDao = new UserDao($conn);
 $kindDao = new KindDao($conn);
 
 // Create Service instances with injected DAOs
-$workerService = new EmployeeService($workerDao);
+$employeeService = new EmployeeService($workerDao);
 $animalService = new AnimalService($animalDao, $kindDao);
 $campService = new CampService($campDao);
 $userService = new USerService($userDao);
+
+$auth = new Auth($userDao);
