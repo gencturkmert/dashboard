@@ -1,10 +1,5 @@
 <?php
 
-require_once("services/UserService.php");
-require_once("services/AnimalService.php");
-require_once("services/EmployeeService.php");
-require_once("services/CampService.php");
-require_once("Auth.php");
 
 class AdminController
 {

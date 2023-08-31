@@ -1,5 +1,7 @@
 <?php
 
+require_once("src/backend/entity/User.php");
+
 class UserDao
 {
     private $conn;

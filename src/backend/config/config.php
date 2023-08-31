@@ -1,18 +1,16 @@
 <?php
-require_once("core/db.php");
+require_once("src/backend/core/db.php");
 
-require_once("services/EmployeeService.php");
-require_once("services/AnimalService.php");
-require_once("services/CampService.php");
-require_once("services/UserService.php");
-
-require_once("daos/EmployeeDao.php");
-require_once("daos/AnimalDao.php");
-require_once("daos/CampDao.php");
-require_once("daos/UserDao.php");
-require_once("daos/KindDao.php");
-
-require_once("auth/auth.php");
+require_once("src/backend/services/EmployeeService.php");
+require_once("src/backend/services/AnimalService.php");
+require_once("src/backend/services/CampService.php");
+require_once("src/backend/services/UserService.php");
+require_once("src/backend/daos/EmployeeDao.php");
+require_once("src/backend/daos/AnimalDao.php");
+require_once("src/backend/daos/CampDao.php");
+require_once("src/backend/daos/UserDao.php");
+require_once("src/backend/daos/KindDao.php");
+require_once("src/backend/auth/auth.php");
 
 
 

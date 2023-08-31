@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php'; // Load Composer's autoloader
+require('vendor/autoload.php');
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -59,5 +59,24 @@ class Auth
         return "Logged out successfully";
     }
 
-    // Other authentication methods (login, logout) can be added here
+    public function login($username, $password)
+    {
+        // Validate username and password
+        //password_verify($password, $user->getPassword()
+        $user = $this->userDao->getUserByUsername($username);
+        if (!$user || $password != $user->getPassword()) {
+            echo "INVALID CREDENTIALS";
+            return false; // Invalid credentials
+        }
+
+        // Generate a token
+        $userData = [
+            'id' => $user->getId(),
+            'username' => $user->getUsername()
+        ];
+
+        $token = $this->generateToken($userData);
+
+        return $token;
+    }
 }

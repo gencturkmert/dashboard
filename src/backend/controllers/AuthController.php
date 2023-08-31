@@ -1,6 +1,5 @@
 <?php
 
-require_once("Auth.php");
 
 class AuthController
 {
