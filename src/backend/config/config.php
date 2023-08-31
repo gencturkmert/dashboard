@@ -22,7 +22,7 @@ $userDao = new UserDao($conn);
 $kindDao = new KindDao($conn);
 
 // Create Service instances with injected DAOs
-$employeeService = new EmployeeService($workerDao);
+$employeeService = new EmployeeService($employeeDao);
 $animalService = new AnimalService($animalDao, $kindDao);
 $campService = new CampService($campDao);
 $userService = new USerService($userDao);

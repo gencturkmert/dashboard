@@ -33,17 +33,21 @@ class Auth
 
     public function validateToken($token)
     {
+        $token = trim(str_replace("Bearer", "", $token));
+
+
         try {
             $decoded = JWT::decode($token, new Key($this->jwtSecret, 'HS256'));
 
             $currentTime = time();
             if ($decoded->exp < $currentTime) {
+                echo json_encode(array("message" => "Token expired."));
                 return false;
             }
 
             return true;
         } catch (Exception $e) {
-
+            echo json_encode(array("message" => "Authentication failed"));
             return false;
         }
     }
@@ -65,7 +69,7 @@ class Auth
         //password_verify($password, $user->getPassword()
         $user = $this->userDao->getUserByUsername($username);
         if (!$user || $password != $user->getPassword()) {
-            echo "INVALID CREDENTIALS";
+            echo json_encode(array("message" => "Invalid Credentials"));
             return false; // Invalid credentials
         }
 

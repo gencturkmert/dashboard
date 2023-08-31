@@ -20,7 +20,7 @@ $adminRoutes = new AdminRoutes($auth, $adminController);
 // Simulate handling of requests
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 $requestUri = $_SERVER["REQUEST_URI"];
-$requestHeaders = getallheaders(); // Get headers
+$requestHeaders = $_SERVER["HTTP_AUTHORIZATION"] ?? '';
 $requestData = json_decode(file_get_contents("php://input"), true); // Get request data
 
 // Check if the request starts with "/admin"
