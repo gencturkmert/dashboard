@@ -1,6 +1,6 @@
 <?php
 
-require_once("src/backend/entity/User.php");
+require_once("backend/entity/User.php");
 
 class UserDao
 {

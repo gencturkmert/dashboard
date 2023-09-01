@@ -1,5 +1,7 @@
 <?php
 
+require_once("backend/entity/Animal.php");
+
 class AnimalDao
 {
     private $conn;

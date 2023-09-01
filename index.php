@@ -1,14 +1,11 @@
 <?php
 
-require_once("src/backend/auth/auth.php");
+require_once("backend/auth/auth.php");
+require_once("backend/config/config.php");
+require_once("backend/controllers/AdminController.php");
+require_once("backend/controllers/AuthController.php");
 
-
-require_once("src/backend/config/config.php");
-
-require_once("src/backend/controllers/AdminController.php");
-require_once("src/backend/controllers/AuthController.php");
-
-require_once("src/backend/routes/AdminRoutes.php");
+require_once("backend/routes/AdminRoutes.php");
 
 $adminController = new AdminController($userService, $animalService, $employeeService, $campService, $auth);
 $authController = new AuthController($auth);

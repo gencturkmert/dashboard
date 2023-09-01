@@ -1,5 +1,8 @@
 <?php
 
+require_once("backend/entity/Kind.php");
+
+
 class KindDao
 {
     private $conn;

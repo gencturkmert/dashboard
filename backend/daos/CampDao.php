@@ -1,5 +1,7 @@
 <?php
 
+require_once("backend/entity/Camp.php");
+
 class CampDao
 {
     private $conn;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+
+    <link rel="stylesheet" href="assets/css/semantic.min.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/semantic.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/statistics">Statistics</a></li>
+                <li><a href="/management">Management</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Welcome to the Mock Admin Dashboard</h1>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Mock Admin Dashboard</p>
+    </footer>
+
+    <script>
+        // Function to get a cookie by name
+        function getCookie(name) {
+            const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+            return cookieValue ? cookieValue.pop() : '';
+        }
+
+        // Check for the presence of a valid token
+        const token = getCookie('token');
+
+        // Redirect based on token presence and validity
+        if (token) {
+            // Token is valid, redirect to dashboard
+            window.location.href = '/dashboard';
+        } else {
+            // Token is not valid or does not exist, redirect to login page
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+</html>
