@@ -25,7 +25,7 @@ class EmployeeDao
                 "role" => $row['role'],
                 "gender" => $row['gender'],
                 "chief_id" => $row['chief_id'],
-                "location" => $row['location'],
+                "camp" => $row['location'],
                 "active" => $row['active'],
                 "age" => $row['age']
             );

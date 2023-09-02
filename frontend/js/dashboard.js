@@ -140,7 +140,7 @@ function createManagerCards(employees, camps, animals) {
 
     const meta = document.createElement("div");
     meta.classList.add("meta");
-    meta.innerText = camps[manager.location - 1].name;
+    meta.innerText = camps[manager.camp - 1].name;
 
     const description = document.createElement("div");
     description.classList.add("description");
