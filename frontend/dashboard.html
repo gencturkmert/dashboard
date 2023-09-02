@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/semantic.min.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div id="dashboard">
+      <!-- Placeholder for the Navbar -->
+      <div id="navbar-placeholder"></div>
+
+      <div class="ui container" style="margin-top: 20px">
+        <h1>Dashboard</h1>
+
+        <div id="chartContainer" style="height: 400px"></div>
+      </div>
+
+      <div id="notification" class="ui error message" style="display: none">
+        <i class="close icon"></i>
+        <div class="header">Error</div>
+        <p id="notification-text"></p>
+      </div>
+
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/semantic.min.js"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="/js/main.js"></script>
+
+      <script>
+        $(document).ready(function () {
+          $("#navbar-placeholder").load("navbar.html");
+        });
+      </script>
+    </div>
+  </body>
+</html>

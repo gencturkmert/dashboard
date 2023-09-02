@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/semantic.min.css" />
+
+    <style>
+      /* Remove margin and padding from the body */
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Remove margin and padding from the navbar */
+      .ui.menu {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <title>Your Navbar</title>
+  </head>
+  <body>
+    <div class="ui inverted teal menu">
+      <a class="item" href="/bashdoard/dashboard">
+        <i class="home icon"></i> Home
+      </a>
+      <a class="item" href="/bashdoard/management">
+        <i class="tasks icon"></i> Management
+      </a>
+      <a class="item" href="/bashdoard/statistics">
+        <i class="chart bar icon"></i> Statistics
+      </a>
+      <div class="right menu">
+        <div class="ui simple dropdown item" id="logout-dropdown">
+          <i class="ellipsis vertical icon"></i>
+          <div class="menu">
+            <div id="logout-option" class="ui button" onclick="logout()">Logout</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+
+    <script src="assets/js/semantic.min.js"></script>
+
+    <!-- 
+    <script>
+        $('logout-dropdown').dropdown();
+    </script> -->
+  </body>
+</html>

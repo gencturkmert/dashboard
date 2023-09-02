@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+# Convert clean URLs to normal file path URLs
+RewriteRule ^dashboard/login$ frontend/login.html [L]
+RewriteRule ^dashboard/dashboard$ frontend/dashboard.html [L]
+RewriteRule ^dashboard/statistics$ frontend/statistics.html [L]
+RewriteRule ^dashboard/management$ frontend/management.html [L]
+
+# Add more conversion rules for other clean URLs as needed

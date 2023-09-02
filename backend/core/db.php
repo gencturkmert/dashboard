@@ -13,7 +13,5 @@ try {
 
 //if connection is successfully you will see message below
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("DB Connection failed: " . $conn->connect_error);
 }
-
-echo 'Connected successfully';

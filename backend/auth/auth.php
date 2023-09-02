@@ -41,12 +41,14 @@ class Auth
 
             $currentTime = time();
             if ($decoded->exp < $currentTime) {
+                http_response_code(401);
                 echo json_encode(array("message" => "Token expired."));
                 return false;
             }
 
             return true;
         } catch (Exception $e) {
+            http_response_code(401);
             echo json_encode(array("message" => "Authentication failed"));
             return false;
         }
