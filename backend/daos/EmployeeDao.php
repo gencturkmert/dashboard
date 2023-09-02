@@ -18,7 +18,19 @@ class EmployeeDao
 
         $employees = array();
         while ($row = $result->fetch_assoc()) {
-            $employees[] = $row;
+            $employeeData = array(
+                "id" => $row['id'],
+                "name" => $row['name'],
+                "surname" => $row['surname'],
+                "role" => $row['role'],
+                "gender" => $row['gender'],
+                "chief_id" => $row['chief_id'],
+                "location" => $row['location'],
+                "active" => $row['active'],
+                "age" => $row['age']
+            );
+
+            $employees[] = $employeeData;
         }
 
         return $employees;

@@ -4,12 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/semantic.min.css" />
-
     <style>
       /* Remove margin and padding from the body */
       body {
         margin: 0;
         padding: 0;
+      }
+
+      /* Increase the navbar height and font size */
+      .ui.inverted.teal.menu {
+        padding: 15px 0; /* Adjust the top and bottom padding */
+        line-height: 2; /* Adjust the line height */
+      }
+
+      /* Increase font size of buttons */
+      .ui.inverted.teal.menu .item {
+        font-size: 18px; /* Adjust the font size */
+      }
+
+      .ui.button {
+        font-size: 20px;
+      }
+
+      /* Increase the size of the three-dot button */
+      .ui.simple.dropdown.item #logout-dropdown i.ellipsis.vertical.icon {
+        font-size: 24px; /* Adjust the font size */
       }
 
       /* Remove margin and padding from the navbar */
@@ -18,8 +37,6 @@
         padding: 0;
       }
     </style>
-
-    <title>Your Navbar</title>
   </head>
   <body>
     <div class="ui inverted teal menu">

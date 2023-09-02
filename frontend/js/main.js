@@ -1,11 +1,6 @@
 import { validateToken, redirectToLogin } from "./auth.js";
 import { initializeRouting } from "./routing.js";
 
-// Function to clear the token from local storage
-function clearToken() {
-  localStorage.removeItem("token");
-}
-
 // Function to show an error notification
 function showErrorNotification(message) {
   const notification = $("#notification");
@@ -32,7 +27,6 @@ function hideErrorNotification() {
 // Validate the token and load initial content
 try {
   validateToken(function (isValid) {
-    console.log(isValid);
     if (isValid) {
       initializeRouting();
     } else {

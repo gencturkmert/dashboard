@@ -18,7 +18,16 @@ class CampDao
 
         $camps = array();
         while ($row = $result->fetch_assoc()) {
-            $camps[] = $row;
+            $campData = array(
+                "id" => $row['id'],
+                "name" => $row['name'],
+                "city" => $row['city'],
+                "zipcode" => $row['zipcode'],
+                "max_capacity" => $row['max_capacity'],
+                "active" => $row['active']
+            );
+
+            $camps[] = $campData;
         }
 
         return $camps;

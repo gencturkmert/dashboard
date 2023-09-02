@@ -11,10 +11,30 @@
       <!-- Placeholder for the Navbar -->
       <div id="navbar-placeholder"></div>
 
-      <div class="ui container" style="margin-top: 20px">
-        <h1>Dashboard</h1>
+      <div class="ui segment">
+        <h2 class="ui header">Managers:</h2>
+        <div
+          class="ui grid"
+          id="manager-cards-container"
+          style="margin-top: 20px; margin-left: 30px"
+        ></div>
+      </div>
 
-        <div id="chartContainer" style="height: 400px"></div>
+      <div class="ui segment">
+        <h2 class="ui header">Charts:</h2>
+        <div class="ui grid" style="margin-top: 20px">
+          <!-- Left Column -->
+          <div class="eight wide column">
+            <div id="camp-chart-container" style="height: 400px"></div>
+          </div>
+          <!-- Right Column -->
+          <div class="eight wide column" id="kind-chart-container">
+            <div
+              id="kind-chart-container"
+              style="height: 400px; width: 50%"
+            ></div>
+          </div>
+        </div>
       </div>
 
       <div id="notification" class="ui error message" style="display: none">
@@ -27,6 +47,7 @@
       <script src="assets/js/semantic.min.js"></script>
       <script src="https://code.highcharts.com/highcharts.js"></script>
       <script type="module" src="js/main.js"></script>
+      <script type="module" src="js/dashboard.js"></script>
 
       <script>
         $(document).ready(function () {

@@ -19,17 +19,17 @@ class AnimalDao
             $result = $this->conn->query($query);
 
             while ($row = $result->fetch_assoc()) {
-                // $animals[]  = new Animal(
-                //     $row['id'],
-                //     $row['name'],
-                //     $row['kind_id'],
-                //     $row['age'],
-                //     $row['place'],
-                //     $row['caretaker_id']
-                // );
+                $animalData = array(
+                    "id" => $row['id'],
+                    "name" => $row['name'],
+                    "kind_id" => $row['kind_id'],
+                    "age" => $row['age'],
+                    "camp" => $row['place'],
+                    "caretaker_id" => $row['caretaker_id']
+                );
 
 
-                $animals[] = $row;
+                $animals[] = $animalData;
             }
         } catch (mysqli_sql_exception $e) {
             die("Error retrieving animals: " . $e->getMessage());

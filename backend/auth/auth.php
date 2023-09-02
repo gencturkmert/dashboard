@@ -9,7 +9,7 @@ use Firebase\JWT\Key;
 class Auth
 {
     private $userDao;
-    private $jwtSecret = 'your-secret-key'; // Replace with your secret key
+    private $jwtSecret = 'jhsdkjfyu003h'; // Replace with your secret key
 
     public function __construct($userDao)
     {
@@ -24,7 +24,7 @@ class Auth
             "sub" => $userData['id'],
             "username" => $userData['username'],
             "iat" => $currentTime, // Issued At
-            "exp" => $currentTime + 900, // Expire in 15 minutes
+            "exp" => $currentTime + 1200, // Expire in 15 minutes
         );
 
         $token = JWT::encode($tokenPayload, $this->jwtSecret, 'HS256');

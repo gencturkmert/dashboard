@@ -16,13 +16,48 @@
       <div class="ui container" style="margin-top: 20px">
         <h1>Statistics</h1>
 
-        <div id="chartContainer" style="height: 400px"></div>
+        <!-- Radio Group -->
+        <div class="ui form">
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input
+                type="radio"
+                name="statistics-option"
+                id="camp-stats"
+                checked
+              />
+              <label for="camp-stats">Camp Statistics</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="statistics-option" id="animal-stats" />
+              <label for="animal-stats">Animal Statistics</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input
+                type="radio"
+                name="statistics-option"
+                id="employee-stats"
+              />
+              <label for="employee-stats">Employee Statistics</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Display Statistics -->
+        <div id="statistics-container">
+          <!-- Statistics content will be displayed here -->
+        </div>
       </div>
 
       <script src="assets/js/jquery.min.js"></script>
       <script src="assets/js/semantic.min.js"></script>
       <script src="assets/js/highcharts.js"></script>
       <script type="module" src="js/main.js"></script>
+      <script type="module" src="js/statistics.js"></script>
 
       <script>
         $(document).ready(function () {

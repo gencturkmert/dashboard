@@ -1,10 +1,6 @@
-// Function to load page content based on the route
 export function loadPageContent(route) {
   const app = document.getElementById("app");
-  console.log("load page content");
-  console.log(route);
 
-  // Define routes and their corresponding HTML files
   const routes = {
     "/bashdoard/": "index.html",
     "/bashdoard/login": "login.html",
@@ -30,8 +26,10 @@ export function loadPageContent(route) {
       })
       .catch((error) => {
         console.error("Error loading page:", error);
-        // Show an error notification for other errors
-        showErrorNotification("An error occurred while loading the page.");
+        showErrorNotification(
+          "An error occurred while loading the page.",
+          error
+        );
       });
   } else {
     // Route not found, handle accordingly (e.g., show a 404 page)

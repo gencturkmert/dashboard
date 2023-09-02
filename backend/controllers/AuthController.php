@@ -48,8 +48,10 @@ class AuthController
     {
         $token = $requestData["token"];
         if ($this->auth->validateToken($token)) {
+            echo json_encode(array("success" => true));
             http_response_code(200);
         } else {
+            echo json_encode(array("success" => false));
             http_response_code(401);
         }
     }
