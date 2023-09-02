@@ -1,15 +1,9 @@
-import { getToken, validateToken, redirectToLogin } from "./auth.js";
+import { validateToken, redirectToLogin } from "./auth.js";
 import { initializeRouting } from "./routing.js";
 
 // Function to clear the token from local storage
 function clearToken() {
   localStorage.removeItem("token");
-}
-
-// Function to handle logout
-function logout() {
-  clearToken();
-  redirectToLogin();
 }
 
 // Function to show an error notification
@@ -35,26 +29,20 @@ function hideErrorNotification() {
   notification.css("display", "none");
 }
 
-// Check for the presence of a valid token
-const token = getToken();
-
 // Validate the token and load initial content
-validateToken(token)
-  .then((isValid) => {
+try {
+  validateToken(function (isValid) {
+    console.log(isValid);
     if (isValid) {
-      // Redirect users with valid tokens to the dashboard page, but only if not on the login page
-      if (window.location.pathname !== "/bashdoard/login") {
-        window.location.href = "/bashdoard/dashboard";
-      } else {
-        initializeRouting();
-      }
+      initializeRouting();
     } else {
       redirectToLogin();
     }
-  })
-  .catch(() => {
-    redirectToLogin();
   });
+} catch (e) {
+  console.log(e);
+  redirectToLogin();
+}
 
 // Listen for popstate events
 window.addEventListener("popstate", () => {

@@ -1,8 +1,8 @@
-// routing.js
-
 // Function to load page content based on the route
 export function loadPageContent(route) {
   const app = document.getElementById("app");
+  console.log("load page content");
+  console.log(route);
 
   // Define routes and their corresponding HTML files
   const routes = {
