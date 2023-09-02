@@ -4,7 +4,7 @@ export function getToken() {
 }
 
 export function clearToken() {
-  localStorage.setItemetItem("token", "");
+  localStorage.setItem("token", "");
 }
 
 // Function to validate the token via an API call
