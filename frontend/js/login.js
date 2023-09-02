@@ -1,4 +1,4 @@
-import { getToken, redirectToDashboard } from "./auth.js";
+import { redirectToDashboard } from "./auth.js";
 
 function loginUser() {
   const username = $('input[name="username"]').val();

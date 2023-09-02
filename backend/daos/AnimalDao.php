@@ -1,4 +1,6 @@
 <?php
+require_once("backend/entity/Animal.php");
+
 class AnimalDao
 {
     private $conn;
@@ -10,32 +12,87 @@ class AnimalDao
 
     public function getAllAnimals()
     {
-        $query = "SELECT * FROM animals";
-        $result = $this->conn->query($query);
-
         $animals = array();
-        while ($row = $result->fetch_assoc()) {
-            $animals[] = $row;
+
+        try {
+            $query = "SELECT * FROM animals";
+            $result = $this->conn->query($query);
+
+            while ($row = $result->fetch_assoc()) {
+                // $animals[]  = new Animal(
+                //     $row['id'],
+                //     $row['name'],
+                //     $row['kind_id'],
+                //     $row['age'],
+                //     $row['place'],
+                //     $row['caretaker_id']
+                // );
+
+
+                $animals[] = $row;
+            }
+        } catch (mysqli_sql_exception $e) {
+            die("Error retrieving animals: " . $e->getMessage());
         }
 
         return $animals;
     }
 
-    public function updateAnimal(Animal $animal)
+    public function getAnimalById($animalId)
     {
-        $query = "UPDATE animals SET name=?, kind=?, age=?, place=?, caretaker=? WHERE id=?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ssiiii", $animal->getName(), $animal->getKind()->getId(), $animal->getAge(), $animal->getPlace(), $animal->getCaretaker(), $animal->getId());
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM animals WHERE id = :animalId");
+            $stmt->bindParam(":animalId", $animalId, PDO::PARAM_INT);
+            $stmt->execute();
+            $animalData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $stmt->execute();
+            if ($animalData) {
+                $animal = new Animal(
+                    $animalData['id'],
+                    $animalData['name'],
+                    $animalData['kind_id'],
+                    $animalData['age'],
+                    $animalData['place'],
+                    $animalData['caretaker_id']
+                );
+
+                return $animal;
+            } else {
+                return null; // Animal not found
+            }
+        } catch (PDOException $e) {
+            die("Error retrieving animal: " . $e->getMessage());
+        }
     }
 
     public function insertAnimal(Animal $animal)
     {
-        $query = "INSERT INTO animals (name, kind, age, place, caretaker) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ssiii", $animal->getName(), $animal->getKind()->getId(), $animal->getAge(), $animal->getPlace(), $animal->getCaretaker());
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO animals (name, kind_id, age, place, caretaker_id) VALUES (:name, :kind_id, :age, :place, :caretaker_id)");
+            $stmt->bindValue(":name", $animal->getName());
+            $stmt->bindValue(":kind_id", $animal->getKind());
+            $stmt->bindValue(":age", $animal->getAge());
+            $stmt->bindValue(":place", $animal->getPlace());
+            $stmt->bindValue(":caretaker_id", $animal->getCaretaker());
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die("Error inserting animal: " . $e->getMessage());
+        }
+    }
 
-        return $stmt->execute();
+    public function updateAnimal(Animal $animal)
+    {
+        try {
+            $stmt = $this->conn->prepare("UPDATE animals SET name = :name, kind_id = :kind_id, age = :age, place = :place, caretaker_id = :caretaker_id WHERE id = :id");
+            $stmt->bindValue(":name", $animal->getName());
+            $stmt->bindValue(":kind_id", $animal->getKind());
+            $stmt->bindValue(":age", $animal->getAge());
+            $stmt->bindValue(":place", $animal->getPlace());
+            $stmt->bindValue(":caretaker_id", $animal->getCaretaker());
+            $stmt->bindValue(":id", $animal->getId());
+            $stmt->execute();
+        } catch (PDOException $e) {
+            die("Error updating animal: " . $e->getMessage());
+        }
     }
 }

@@ -9,7 +9,7 @@ class Animal
     private $place;
     private $caretaker;
 
-    public function __construct($id, $name, Kind $kind, $age, $place, $caretaker)
+    public function __construct($id, $name, $kind, $age, $place, $caretaker)
     {
         $this->id = $id;
         $this->name = $name;
@@ -39,7 +39,7 @@ class Animal
         return $this->age;
     }
 
-    public function getPlace()
+    public function getCamp()
     {
         return $this->place;
     }
@@ -60,7 +60,7 @@ class Animal
         $this->name = $name;
     }
 
-    public function setKind(Kind $kind)
+    public function setKind($kind)
     {
         $this->kind = $kind;
     }
@@ -70,7 +70,7 @@ class Animal
         $this->age = $age;
     }
 
-    public function setPlace($place)
+    public function setCamp($place)
     {
         $this->place = $place;
     }

@@ -1,26 +1,27 @@
 <?php
-
 class Employee
 {
     private $id;
     private $name;
+    private $surname;
     private $role;
     private $gender;
-    private $chief;
+    private $chief_id;
     private $location;
     private $active;
-    private $registeredDate;
-    private $endDate;
+    private $age;
 
-    public function __construct($id, $name, $chief, $location, $active, $registeredDate, $endDate)
+    public function __construct($id, $name, $surname, $role, $gender, $chief_id, $location, $active, $age)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->chief = $chief;
+        $this->surname = $surname;
+        $this->role = $role;
+        $this->gender = $gender;
+        $this->chief_id = $chief_id;
         $this->location = $location;
         $this->active = $active;
-        $this->registeredDate = $registeredDate;
-        $this->endDate = $endDate;
+        $this->age = $age;
     }
 
     public function getId()
@@ -28,9 +29,29 @@ class Employee
         return $this->id;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function getName()
     {
         return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
     }
 
     public function getRole()
@@ -38,53 +59,14 @@ class Employee
         return $this->role;
     }
 
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
     public function getGender()
     {
         return $this->gender;
-    }
-
-    public function getChief()
-    {
-        return $this->chief;
-    }
-
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    public function isActive()
-    {
-        return $this->active;
-    }
-
-    public function getRegisteredDate()
-    {
-        return $this->registeredDate;
-    }
-
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    public function setUsername($name)
-    {
-        $this->name = $name;
-    }
-
-    public function setRole($role)
-    {
-        if (in_array($role, array(EmployeeRole::MANAGER, EmployeeRole::CARETAKER, EmployeeRole::WORKER))) {
-            $this->role = $role;
-        } else {
-            throw new Exception("Invalid role");
-        }
     }
 
     public function setGender($gender)
@@ -92,9 +74,19 @@ class Employee
         $this->gender = $gender;
     }
 
-    public function setChief($chief)
+    public function getChiefId()
     {
-        $this->chief = $chief;
+        return $this->chief_id;
+    }
+
+    public function setChiefId($chief_id)
+    {
+        $this->chief_id = $chief_id;
+    }
+
+    public function getLocation()
+    {
+        return $this->location;
     }
 
     public function setLocation($location)
@@ -102,18 +94,23 @@ class Employee
         $this->location = $location;
     }
 
+    public function getActive()
+    {
+        return $this->active;
+    }
+
     public function setActive($active)
     {
         $this->active = $active;
     }
 
-    public function setRegisteredDate($registeredDate)
+    public function getAge()
     {
-        $this->registeredDate = $registeredDate;
+        return $this->age;
     }
 
-    public function setEndDate($endDate)
+    public function setAge($age)
     {
-        $this->endDate = $endDate;
+        $this->age = $age;
     }
 }

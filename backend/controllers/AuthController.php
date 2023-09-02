@@ -47,7 +47,11 @@ class AuthController
     public function handleValidateToken($requestData)
     {
         $token = $requestData["token"];
-        echo $this->auth->validateToken($token);
+        if ($this->auth->validateToken($token)) {
+            http_response_code(200);
+        } else {
+            http_response_code(401);
+        }
     }
 
     private function handleLogout($requestData)

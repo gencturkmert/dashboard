@@ -23,8 +23,7 @@ class AdminController
         // Check token validity
         $token = $_SERVER["HTTP_AUTHORIZATION"] ?? '';
         if (!$this->auth->validateToken($token)) {
-            http_response_code(401);
-            echo json_encode(array("message" => "Unauthorized"));
+            echo json_encode(array("success" => false, "message" => "Unauthorized"));
             return;
         }
 
@@ -50,7 +49,7 @@ class AdminController
                 echo json_encode($users);
                 break;
             case "/admin/animals":
-                $animals = $this->animalService->getAllAnimals();
+                $animals = $this->animalService->getAllAnimalsWithDetails();
                 echo json_encode($animals);
                 break;
             case "/admin/employees":
@@ -60,6 +59,11 @@ class AdminController
             case "/admin/camps":
                 $camps = $this->campService->getAllCamps();
                 echo json_encode($camps);
+                break;
+
+            case "/admin/kinds":
+                $kinds = $this->animalService->getAllKinds();
+                echo json_encode($kinds);
                 break;
             default:
                 http_response_code(404);

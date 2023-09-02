@@ -37,6 +37,33 @@ class CampDao
         return $camps;
     }
 
+    public function getCampById($campId)
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM camps WHERE id = ?");
+            $stmt->bind_param("i", $campId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $campData = $result->fetch_assoc();
+
+            if ($campData) {
+                return new Camp(
+                    $campData['id'],
+                    $campData['name'],
+                    $campData['city'],
+                    $campData['zipcode'],
+                    $campData['max_capacity'],
+                    $campData['active']
+                );
+            } else {
+                return null; // Camp not found
+            }
+        } catch (mysqli_sql_exception $e) {
+            die("Error retrieving camp: " . $e->getMessage());
+        }
+    }
+
+
     public function updateCamp(Camp $camp)
     {
         $query = "UPDATE camps SET name=?, city=?, zipcode=?, max_capacity=?, active=? WHERE id=?";
