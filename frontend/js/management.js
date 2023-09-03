@@ -98,20 +98,19 @@ function initializeDataTable(employeeData, campData, chiefsData, rolesData) {
 
     updateEmployee(updatedEmployeeData)
       .then(() => {
+        $("#edit-modal").modal("hide");
+
         const index = employeeData.findIndex(
-          (employee) => employee.id === updatedEmployeeData.id
+          (employee) => parseInt(employee.id) === updatedEmployeeData.id
         );
 
         if (index !== -1) {
-          // Update the corresponding employee in employeesData
+          console.log(index);
           employeeData[index] = updatedEmployeeData;
 
-          // Get the DataTable row by its index and update its data
-          table.draw();
-          table.ajax.reload();
+          initializeDataTable(employeeData, campData, chiefsData, rolesData);
+          return;
         }
-
-        $("#edit-modal").modal("hide");
       })
       .catch((error) => {
         console.error("Error updating employee:", error);
