@@ -2,4 +2,4 @@
 
 basic php project that contains an admin dashboard
 
-to access: https://13cf99ea7d2693.lhr.life/frontend/
+to access: https://d9bdfaef2c1fdd.lhr.life/frontend/
