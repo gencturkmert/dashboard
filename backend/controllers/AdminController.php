@@ -18,7 +18,7 @@ class AdminController
         $this->auth = $auth;
     }
 
-    public function handleRequest()
+    public function handleRequest($requestMethod, $requestUri, $requestHeaders, $requestData)
     {
         // Check token validity
         $token = $_SERVER["HTTP_AUTHORIZATION"] ?? '';
@@ -27,21 +27,21 @@ class AdminController
             return;
         }
 
-        $requestMethod = $_SERVER["REQUEST_METHOD"];
-        $path = $_SERVER["REQUEST_URI"];
 
         switch ($requestMethod) {
             case "GET":
-                $this->handleGetRequest($path);
+                $this->handleGetRequest($requestUri, $requestData);
                 break;
-                // Add cases for other HTTP methods (POST, PUT, DELETE) if needed
+            case "POST":
+                $this->handlePostRequest($requestUri, $requestData);
+                break;
             default:
                 http_response_code(405); // Method Not Allowed
                 echo json_encode(array("message" => "Method not allowed"));
         }
     }
 
-    public function handleGetRequest($path)
+    public function handleGetRequest($path, $requestData)
     {
         switch ($path) {
             case "/admin/users":
@@ -64,6 +64,23 @@ class AdminController
             case "/admin/kinds":
                 $kinds = $this->animalService->getAllKinds();
                 echo json_encode($kinds);
+                break;
+            default:
+                http_response_code(404);
+                echo json_encode(array("message" => "Not Found"));
+        }
+    }
+
+    public function handlePostRequest($path, $requestData)
+    {
+        switch ($path) {
+            case "/admin/deleteEmployee":
+                $success = $this->employeeService->deleteEmployee($requestData);
+                echo json_encode(array("success" => $success, "data" => $requestData));
+                break;
+            case "/admin/updateEmployee":
+                $success = $this->employeeService->updateEmployee($requestData);
+                echo json_encode(array("success" => $success, "data" => $requestData));
                 break;
             default:
                 http_response_code(404);

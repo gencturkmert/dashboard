@@ -24,7 +24,7 @@ class AdminRoutes
 
             switch ($requestMethod) {
                 case "GET":
-                    $this->adminController->handleGetRequest($requestUri);
+                    $this->adminController->handleGetRequest($requestUri, $requestData);
                     break;
                 case "POST":
                     $this->adminController->handlePostRequest($requestUri, $requestData);

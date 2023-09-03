@@ -4,8 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/semantic.min.css" />
-    <link rel="stylesheet" href="assets/css/highcharts.css" />
-    <!-- Include Highcharts CSS -->
+    <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="assets/css/dataTables.semanticui.min.css" />
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/semantic.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.semanticui.min.js"></script>
+    <script type="module" src="js/management.js"></script>
+
     <title>Management</title>
   </head>
   <body>
@@ -16,13 +24,41 @@
       <div class="ui container" style="margin-top: 20px">
         <h1>Management</h1>
 
-        <div id="chartContainer" style="height: 400px"></div>
+        <table id="table-container" style="height: 400px; width: 600px"></table>
       </div>
 
-      <script src="assets/js/jquery.min.js"></script>
-      <script src="assets/js/semantic.min.js"></script>
-      <script src="assets/js/highcharts.js"></script>
-      <script type="module" src="js/main.js"></script>
+      <div class="ui modal" id="edit-modal">
+        <i class="close icon"></i>
+        <div class="header">Edit Employee</div>
+        <div class="content">
+          <form class="ui form" id="edit-form">
+            <div class="field">
+              <label>Name</label>
+              <input type="text" id="edit-name" name="name" />
+            </div>
+            <div class="field">
+              <label>Surname</label>
+              <input type="text" id="edit-surname" name="surname" />
+            </div>
+            <div class="field">
+              <label>Role</label>
+              <select class="ui dropdown" id="edit-role" name="role"></select>
+            </div>
+            <div class="field">
+              <label>Chief</label>
+              <select class="ui dropdown" id="edit-chief" name="chief"></select>
+            </div>
+            <div class="field">
+              <label>Camp</label>
+              <select class="ui dropdown" id="edit-camp" name="camp"></select>
+            </div>
+          </form>
+        </div>
+        <div class="actions">
+          <div class="ui primary button" id="edit-save">Save</div>
+          <div class="ui button" id="edit-cancel">Cancel</div>
+        </div>
+      </div>
 
       <script>
         $(document).ready(function () {

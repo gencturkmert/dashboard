@@ -13,7 +13,7 @@ class EmployeeDao
 
     public function getAllEmployees()
     {
-        $query = "SELECT * FROM employees";
+        $query = "SELECT * FROM employees WHERE active = 1";
         $result = $this->conn->query($query);
 
         $employees = array();
@@ -39,7 +39,7 @@ class EmployeeDao
     public function getEmployeeById($employeeId)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM employees WHERE id = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM employees WHERE id = ? AND WHERE active = 1");
             $stmt->bind_param("i", $employeeId);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -66,20 +66,29 @@ class EmployeeDao
     }
 
 
-    public function updateEmployee(Employee $employee)
+    public function updateEmployee($requestData)
     {
-        $query = "UPDATE employees SET name=?, surname =?, role=?, gender=?, chief=?, location=?, active=?, registered_date=?, end_date=? WHERE id=?";
+        $query = "UPDATE employees SET name=?, surname =?, role=?, chief_id=?, location=?  WHERE id=?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sssiisiis", $employee->getName(), $employee->getRole(), $employee->getGender(), $employee->getChief(), $employee->getLocation(), $employee->isActive(), $employee->getRegisteredDate(), $employee->getEndDate(), $employee->getId());
+        $stmt->bind_param("sssiii", $requestData["name"], $requestData["surname"], $requestData["role"], $requestData["chief"], $requestData["camp"], $requestData["id"]);
+
+        return $stmt->execute();
+    }
+
+    public function deleteEmployee($employeeId)
+    {
+        $query = "UPDATE employees SET active=0 WHERE id=?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $employeeId);
 
         return $stmt->execute();
     }
 
     public function insertEmployee(Employee $employee)
     {
-        $query = "INSERT INTO employees (name, surname,role, gender, chief, location, active, registered_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO employees (name, surname,role, gender, chief, location, active, age) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sssiisis", $employee->getName(), $employee->getSurname(), $employee->getRole(), $employee->getGender(), $employee->getChief(), $employee->getLocation(), $employee->isActive(), $employee->getRegisteredDate(), $employee->getEndDate());
+        $stmt->bind_param("ssssiiii", $employee->getName(), $employee->getSurname(), $employee->getRole(), $employee->getGender(), $employee->getChiefId(), $employee->getLocation(), $employee->getActive(), $employee->getAge());
 
         return $stmt->execute();
     }
