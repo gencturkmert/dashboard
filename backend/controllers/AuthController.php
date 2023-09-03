@@ -40,7 +40,7 @@ class AuthController
             echo json_encode(array("success" => true, "token" => $token));
         } else {
             http_response_code(401);
-            echo json_encode(array("message" => "Authentication failed"));
+            echo json_encode(array("message" => "Invalid Credentials"));
         }
     }
 

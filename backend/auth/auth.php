@@ -50,24 +50,14 @@ class Auth
         }
     }
 
-    public function logout($token)
-    {
-        // You can implement logout logic here
-        // For example, mark the token as invalidated in the database
-        // or simply delete it from the client-side storage
-        // ...
 
-        // In this example, we'll just return a message
-        return "Logged out successfully";
-    }
 
     public function login($username, $password)
     {
         // Validate username and password
         //password_verify($password, $user->getPassword()
         $user = $this->userDao->getUserByUsername($username);
-        if (!$user || $password != $user->getPassword()) {
-            echo json_encode(array("message" => "Invalid Credentials"));
+        if (!$user || password_verify($password, $user->getPassword())) {
             return false; // Invalid credentials
         }
 
@@ -80,5 +70,14 @@ class Auth
         $token = $this->generateToken($userData);
 
         return $token;
+    }
+
+    private function decrypt($encryptedData, $key)
+    {
+        $encryptedData = base64_decode($encryptedData);
+        $iv = substr($encryptedData, 0, 16); // Extract the IV from the beginning
+        $cipherText = substr($encryptedData, 16); // Extract the cipher text
+        $plainText = openssl_decrypt($cipherText, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+        return $plainText;
     }
 }

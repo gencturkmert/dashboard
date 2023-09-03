@@ -59,11 +59,16 @@ function initializeDataTable(employeeData, campData, chiefsData, rolesData) {
 
   $("#table-container").on("click", ".delete-button", function () {
     const employeeId = $(this).data("employee-id");
-    deleteEmployee(employeeId);
-
-    createEmployeeDataTable();
+    deleteEmployee(employeeId)
+      .then((response) => {
+        table.row($(this).parents("tr")).remove().draw();
+      })
+      .catch((error) => {
+        console.error("Error deleting employee:", error);
+      });
   });
 
+  var tempEmployeeId;
   $("#table-container").on("click", ".edit-button", function () {
     const employeeId = $(this).data("employee-id");
     const employee = employeeData.find(
@@ -77,10 +82,13 @@ function initializeDataTable(employeeData, campData, chiefsData, rolesData) {
     $("#edit-camp").val(employee.camp);
 
     $("#edit-modal").modal("show");
+
+    tempEmployeeId = employeeId;
   });
 
   $("#edit-save").click(function () {
     const updatedEmployeeData = {
+      id: tempEmployeeId,
       name: $("#edit-name").val(),
       surname: $("#edit-surname").val(),
       role: $("#edit-role").val(),
@@ -88,11 +96,26 @@ function initializeDataTable(employeeData, campData, chiefsData, rolesData) {
       camp: $("#edit-camp").val(),
     };
 
-    updateEmployee(updatedEmployeeData);
+    updateEmployee(updatedEmployeeData)
+      .then(() => {
+        const index = employeeData.findIndex(
+          (employee) => employee.id === updatedEmployeeData.id
+        );
 
-    $("#edit-modal").modal("hide");
+        if (index !== -1) {
+          // Update the corresponding employee in employeesData
+          employeeData[index] = updatedEmployeeData;
 
-    createEmployeeDataTable();
+          // Get the DataTable row by its index and update its data
+          table.draw();
+          table.ajax.reload();
+        }
+
+        $("#edit-modal").modal("hide");
+      })
+      .catch((error) => {
+        console.error("Error updating employee:", error);
+      });
   });
 }
 
@@ -113,6 +136,8 @@ function createEmployeeDataTable() {
     })
     .catch((error) => {
       console.error("Error loading data:", error);
+
+      //   location.reload();
     });
 }
 
@@ -155,9 +180,4 @@ function populateChiefsSelect(chiefsData) {
   });
 }
 
-try {
-  createEmployeeDataTable();
-} catch (err) {
-  console.error(err);
-  createEmployeeDataTable();
-}
+createEmployeeDataTable();

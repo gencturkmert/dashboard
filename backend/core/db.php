@@ -1,12 +1,15 @@
 <?php
 
-$hostname = "localhost";
-$username = "dashboard_user";
-$password = "12341234";
-$dbname = "dashboard";
+require_once("backend/config/env.php");
+
+$hostname = EnvironmentVar::hostname;
+$username = EnvironmentVar::username;
+$password = EnvironmentVar::password;
+$dbname = EnvironmentVar::dbname;
+$port = EnvironmentVar::port;
 
 try {
-    $conn = new mysqli($hostname, $username, $password, $dbname, 3306);
+    $conn = new mysqli($hostname, $username, $password, $dbname, $port);
 } catch (Exception $e) {
     echo $e->getMessage();
 }

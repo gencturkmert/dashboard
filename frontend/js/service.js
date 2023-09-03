@@ -41,14 +41,19 @@ export function getKinds() {
     },
   }).then((response) => JSON.parse(response));
 }
-
 export function deleteEmployee(employeeId) {
   const token = localStorage.getItem("token");
+
+  if (!employeeId) {
+    console.error("Employee ID is undefined");
+    return Promise.reject("Employee ID is undefined");
+  }
+
   const deleteData = {
     id: employeeId,
   };
-  console.log(deleteData);
-  $.ajax({
+
+  return $.ajax({
     url: "/admin/deleteEmployee",
     type: "POST",
     contentType: "application/json",
@@ -57,7 +62,7 @@ export function deleteEmployee(employeeId) {
       Authorization: `Bearer ${token}`,
     },
   }).then((response) => {
-    JSON.parse(response);
+    return JSON.parse(response);
   });
 }
 
@@ -68,7 +73,7 @@ export function getRoles() {
 export function updateEmployee(updatedEmployeeData) {
   const token = localStorage.getItem("token");
 
-  $.ajax({
+  return $.ajax({
     url: "/admin/updateEmployee",
     type: "POST",
     contentType: "application/json",
