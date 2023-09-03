@@ -32,10 +32,10 @@ export function validateToken(callback) {
 // Function to redirect to the login page
 export function redirectToLogin() {
   console.log("redirect to login");
-  window.location.href = "/bashdoard/login"; // Update the URL as needed
+  window.location.href = "/frontend/login.html"; // Update the URL as needed
 }
 
 export function redirectToDashboard() {
   console.log("redirect to dashb");
-  window.location.href = "/bashdoard/dashboard"; // Update the URL as needed
+  window.location.href = "/frontend/dashboard.html"; // Update the URL as needed
 }
