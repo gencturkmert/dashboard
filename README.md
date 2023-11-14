@@ -1,9 +1,3 @@
-# dashboard
+Basic PHP project that contains an admin dashboard for zoo management.
+It is done to learn php and create a project using it in a limited time of 3 days.
 
-basic php project that contains an admin dashboard
-
-to access: https://e053f69ac85238.lhr.life/frontend/
-
-Test user:
-username: admin
-password: 1234
