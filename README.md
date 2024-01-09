@@ -1,6 +1,6 @@
 # Zoo Management Admin Dashboard
 
-This project is a basic PHP application developed within a limited timeframe of 3 days as a learning exercise. The purpose of the project is to gain hands-on experience with PHP and create a simple admin dashboard for zoo management.
+This project is a basic PHP application developed within a limited timeframe of 3 days as a learning exercise. Purpose of this project is to learn PHP. I have coded this project with 0 experience in PHP and MySQL, so it is a self-challange project implemented as an exercise.
 
 ## Features
 
@@ -24,9 +24,5 @@ If you would like to contribute to this project, feel free to fork the repositor
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- Thanks to [Your Name] for their guidance and support during the learning process.
-- Inspiration for this project came from the need for a basic zoo management system.
 
 Happy coding! 🚀
