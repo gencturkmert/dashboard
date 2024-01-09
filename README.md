@@ -12,14 +12,9 @@ This project is a basic PHP application developed within a limited timeframe of 
 ## Technologies Used
 
 - PHP
+- Javascript
 - MySQL
 - HTML
 - CSS
-
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 
 Happy coding! 🚀
